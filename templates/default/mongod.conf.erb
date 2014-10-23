@@ -23,7 +23,7 @@ journal = <%= node['mongodb']['journal'] %>
 journalCommitInterval = <%= node['mongodb']['journal_commit_interval'] %>
 
 # Misc.
-<% unless node['mongodb']['http_enabled'] %>nohttpinterface = true<% end %>
+<% if node['mongodb']['http_enabled'] %>httpinterface = true<% end %>
 <% if node['mongodb']['rest_enabled'] %>rest = true<% end %>
 <% if node['mongodb']['small_files'] %>smallfiles = true<% end %>
 <% unless node['mongodb']['scripting_enabled'] %>noscripting = true<% end %>
