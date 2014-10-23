@@ -123,18 +123,6 @@ action :create do
 ##############################################################
 ##############################################################
 
-  check_ip = (new_resource.bind_ip.empty?) ? "127.0.0.1" : new_resource.bind_ip
-
-  hipsnip_mongodb_check_node check_ip do
-    port new_resource.port
-
-    # these will be ignored on first run, before the admin user is set up
-    if node['mongodb']['auth_enabled']
-      admin_user node['mongodb']['admin_user']['name']
-      admin_pass node['mongodb']['admin_user']['password']
-    end
-  end
-
   # Set up Admin user
   hipsnip_mongodb_user node['mongodb']['admin_user']['name'] do
     password node['mongodb']['admin_user']['password']
