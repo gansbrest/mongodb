@@ -104,6 +104,18 @@ action :create do
       action [:enable, :start]
     end 
 
+  else
+
+    template "/etc/init/#{instance_name}.conf" do
+      source "mongod.upstart.erb"
+      mode '644'
+      cookbook 'hipsnip-mongodb'
+      variables(
+        "config_file" => config_file,
+        "instance_name" => instance_name
+      )   
+    end 
+
   end 
 
 
