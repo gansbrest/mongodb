@@ -37,8 +37,6 @@ action :create do
       'db_path' => ::File.join(node['mongodb']['data_dir'], instance_name),
       'replica_set' => new_resource.replica_set
     })
-
-    notifies :restart, "service[#{instance_name}]"
   end
 
   # Data dir
