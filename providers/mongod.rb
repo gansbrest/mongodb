@@ -59,6 +59,7 @@ action :create do
 
   link ::File.join(node['mongodb']['data_dir'], instance_name, 'journal') do
     to ::File.join(node['mongodb']['journal_dir'], instance_name)
+    not_if { ::File.directory?(::File.join(node['mongodb']['journal_dir'], instance_name)) }
   end
 ##############################################################
 ##############################################################
